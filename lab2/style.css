@@ -1,0 +1,169 @@
+html{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    border: 1px solid #e6e3e3;
+    background-color: white;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f2f2f2; 
+}
+
+* {
+    font-family: "Open Sans", Arial, sans-serif;
+    box-sizing: border-box;
+    font-size: 18px;
+}
+
+h1 {
+    font-family: "Times New Roman", sans-serif;
+    font-size: 45px;
+    text-transform: uppercase;
+    margin: 20px 0;
+    display: flex;
+    /* background-color: #647e32; */
+    color:black;
+    justify-content: center;
+}
+
+/*Add task*/
+.add-section {
+    height: 70px;
+    color: #444444;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5px;
+}
+
+#add-task {
+    width: 500px;
+    margin-left: 20px;
+    margin-right: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.input-group-text {
+    background-color: #63bbf2;
+    width: 100px; 
+}
+
+.form-select{
+    width: 300px;
+    margin-right: 25px;
+}
+
+.option {
+    display: none;
+}
+
+/*Tasks*/
+#tasks {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5px;
+    flex-direction: column;
+    width: 700px;
+}
+
+.tasks p {
+    cursor: pointer;
+}
+
+#tasks button {
+    background-color: #483D8B;
+    color: white;
+
+}
+
+#tasks .accordion {
+    width: 700px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    margin: 2px 0;
+}
+
+.task {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    margin: 10px 0;
+
+}
+
+.task p{
+    margin: 0 20px;
+}
+
+/* Modal */
+.modal{
+    display: none;
+    background-color: rgba(0,0,0,0.6);
+    width: 350px;
+    height: 160px;
+    position: absolute;
+    left: 40%;
+}
+
+.modal h5 {
+    text-transform: uppercase;
+    font-size: 12px;
+    margin-left: 35px;
+    margin-top: 15px;
+    color: white;
+}
+
+.modal h3 {
+    font-size: 17px;
+    margin-left: 30px;
+    margin-top: 20px;
+    color: white;
+}
+
+.modal .confirm-btn {
+    margin-left: 190px;
+    margin-top: 40px;
+}
+
+.btn-yes, .btn-no {
+    width: 65px;
+    margin-right: 10px;
+    font-size: 13px;
+}
+
+/*Accordion*/
+.accordion {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+}
+  
+.active, .accordion:hover {
+    background-color: #ccc;
+}
+  
+.panel {
+    padding: 0 18px;
+    background-color: white;
+    display: none;
+    overflow: hidden;
+}
+
+.btn-undelete {
+    display: none;
+}
