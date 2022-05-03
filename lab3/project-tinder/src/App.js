@@ -1,33 +1,62 @@
 import './App.css';
-import {useState} from 'react';
+import {useState, useEffect, useReducer} from 'react';
 import Main from './Pages/Main';
 import AddAd from './Pages/AddAd';
 import AddGroup from './Pages/AddGroup';
+import Fav from './Pages/Fav';
+import SignIn from './Pages/SignIn';
+import SignUp from './Pages/SignUp';
+import Logged from './Pages/Logged';
 import SearchGroup from './Pages/SearchGroup';
-
-import {BrowserRouter, NavLink, Routes, Route} from 'react-router-dom'
+import axios from 'axios';
+import {BrowserRouter, NavLink, Routes, Route} from 'react-router-dom';
+import UserContext from './Context/UserContext';
+import {ReducerContext, initState, reducer} from './Context/ReducerContext';
 
 function App() {
 
-  // var student1 = {name: "Jan Nowak", describe: "hardworking", tags: "docer"};
-  // var student2 = {name: "Ala Kowalska", describe: "ambitious", tags: "webdev, frontend"};
+  const [state, dispatcher] = useReducer(reducer, initState);
 
-  // const [studentsList, setStudentList] = useState(["Sprawdzić zadania", "Wpisać oceny", "uwalić paru Studentów"]);
-  const [studentsList, setStudentList] = useState([
-    {name: "Jan Nowak", email: "jan.nowak@gmail.com", description: "hardworking", tags: "docer", subjects: "fullstack"},
-    {name: "Alicja Kowalska", email: "ala.kowalska@gmail.com", description: "ambitious", tags: "webdev, frontend", subjects: "PIWo"}]);
+  const [studentsList, setStudentList] = useState([]);
 
-  const [groupsList, setGroupList] = useState([
-    {name: "Geeks", members: [{name: "Jan Kowalski", role:"frontend", email: "jan.kowalski@gmail.com"}, {name: "Ala Nowak", role:"backend", email: "ala.nowak@gmail.com"}], description: "hospital website", subject: "fullstack"},
-    {name: "Nerds", members: [{name: "Adam Kowalski", role:"react", email: "adam.kowalski@gmail.com"}, {name: "Ania Nowak", role:"DB", email: "ania.nowak@gmail.com"}], description: "bank website", subject: "piwo"}]);
+  useEffect(() => {
+    axios.get("http://localhost:3000/tinder/students.json")
+      .then(res => {
+        const students = res.data;
+        setStudentList(students);
+        console.log("students");
+      });
+  }, []);
+
+  const [groupsList, setGroupList] = useState([]);
   
-  
+  useEffect(() => {
+    axios.get("http://localhost:3000/tinder/groups.json")
+      .then(res => {
+        const groups = res.data;
+        setGroupList(groups);
+        console.log("groups");
+      });
+  }, []);
+
+  const [usersList, setUserList] = useState([]);
+
+  useEffect(() => {
+    axios.get("http://localhost:3000/tinder/users.json")
+      .then(res => {
+        const users = res.data;
+        setUserList(users);
+        console.log("users");
+      });
+  }, []);
 
   return (
     <>
     <header>
       <h2>Project Tinder for students</h2>
     </header>
+    <ReducerContext.Provider value={{ state, dispatcher }}>
+    <UserContext.Provider value={useState("")}>
     <main>
       <BrowserRouter>
         <section className="navigation">
@@ -36,7 +65,11 @@ function App() {
               <NavLink to="/addAd">Add advertisement</NavLink>
               <NavLink to="/searchGroup">Search group</NavLink>
               <NavLink to="/addGroup">Add group</NavLink>
-          </nav>
+              <NavLink to="/fav">Fav: {state.counter}</NavLink>
+              <NavLink to="/signIn">Sign in</NavLink>
+              <NavLink to="/signUp">Sign up</NavLink>
+              </nav>
+          <Logged/>
         </section>
         <section className="subpages">
           <Routes>
@@ -44,10 +77,15 @@ function App() {
             <Route path="/addAd" element={<AddAd studentsList={studentsList} setStudentList={setStudentList}/>} />
             <Route path="/searchGroup" element={<SearchGroup groupsList={groupsList}/>} />
             <Route path="/addGroup" element={<AddGroup groupsList={groupsList} setGroupList={setGroupList}/>} />
+            <Route path="/fav" element={<Fav usersList={usersList}/>} />
+            <Route path="/signIn" element={<SignIn usersList={usersList}/>} />
+            <Route path="/signUp" element={<SignUp usersList={usersList} setUserList={setUserList}/>} />
           </Routes>
         </section>
       </BrowserRouter>
     </main>
+    </UserContext.Provider>
+    </ReducerContext.Provider>
     </>
   );
 }

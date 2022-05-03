@@ -1,0 +1,35 @@
+[
+    {
+        "name": "Geeks", 
+        "members": [ 
+                        {   "name": "Jan Kowalski", 
+                            "role":"frontend", 
+                            "email": "jan.kowalski@gmail.com"
+                        }, 
+                        {
+                            "name": "Ala Nowak", 
+                            "role":"backend", 
+                            "email": "ala.nowak@gmail.com"
+                        }
+                    ], 
+        "description": "hospital website", 
+        "subject": "fullstack"
+    },
+    {
+        "name": "Nerds", 
+        "members": [
+                        {
+                            "name": "Adam Kowalski", 
+                            "role":"react", 
+                            "email": "adam.kowalski@gmail.com"
+                        }, 
+                        {
+                            "name": "Ania Nowak", 
+                            "role":"Data base", 
+                            "email": "ania.nowak@gmail.com"
+                        }
+                    ], 
+        "description": "bank website", 
+        "subject": "piwo"
+    }
+]

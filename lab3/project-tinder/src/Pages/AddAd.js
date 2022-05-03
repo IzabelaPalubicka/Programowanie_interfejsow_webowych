@@ -10,7 +10,6 @@ const AddAd = (props) => {
     const [newTags, setNewTags] = useState("");
     const [newSubjects, setNewSubjects] = useState("");
 
-
     const handleNewName = (event) => {
         setNewName(event.target.value);
     }
@@ -38,7 +37,7 @@ const AddAd = (props) => {
 
     const studentsListHTML = studentsList.map((it, i) => {
         return (
-            <div className="box" key={i}>
+            <div className="info-box" key={i}>
                 <p>Name: {it.name}</p>
                 <p>Description: {it.description}</p>
                 <p>Tags: {it.tags}</p>

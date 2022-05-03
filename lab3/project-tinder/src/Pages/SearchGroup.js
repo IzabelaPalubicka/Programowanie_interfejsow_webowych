@@ -46,7 +46,7 @@ class SearchGroup extends React.Component {
         return <div className="App">
             <input type="text" placeholder="Type to search.." value={this.state.query} onChange={this.handleSearch} />
             {groupsListHTML}
-            {groupsListHTML == "" && <span>No groups found!</span>}
+            {groupsListHTML.length === 0 && <span>No groups found!</span>}
         </div>
     }
 }

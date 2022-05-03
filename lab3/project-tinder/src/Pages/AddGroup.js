@@ -8,7 +8,6 @@ const AddGroup = (props) => {
 
     const { groupsList, setGroupList } = props;
 
-
     const [newName, setNewName] = useState("");
     const [newDescription, setNewDescription] = useState("");
     const [newSubject, setNewSubject] = useState("");
@@ -109,9 +108,6 @@ const AddGroup = (props) => {
                 </div>
                 <input className="btn" type="button" disabled={addGroup} value="Add group" onClick={handleAddNewGroup} />    
             </section>
-            
-            
-            
             {groupsListHTML}
         </div>
     );

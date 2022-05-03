@@ -160,6 +160,18 @@ footer {
 
 .box {
   display: flex;
+  flex-direction: row;
+  text-align-last: left;
+  background-color: #99738E;
+  border: 2px solid #242582;
+  border-radius: 10px;
+  width: 600px;
+  margin: 10px;
+}
+
+
+.info-box {
+  display: flex;
   flex-direction: column;
   text-align-last: left;
   background-color: #99738E;
@@ -169,7 +181,17 @@ footer {
   margin: 10px;
 }
 
-.box p {
+.student-info {
+  display: flex;
+  flex-direction: column;
+  text-align-last: left;
+  background-color: #99738E;
+  border-radius: 10px;
+  width: 600px;
+  margin: 10px;
+}
+
+.box p, .info-box p {
   padding: 0 10px;
   margin: 5px 0;
 }
@@ -184,6 +206,8 @@ footer {
   width: 600px;
   margin: 10px;
 }
+
+
 
 .group-box p {
   padding: 0 10px;
@@ -217,4 +241,15 @@ input {
   width: 230px;
   margin: 15px 0;
   padding: 8px;
+}
+
+.student-picture {
+  height: 150px;
+  width: 150px;
+  margin: 10px;
+  border-radius: 5px;  
+}
+
+nav span {
+  justify-content: right;   
 }
