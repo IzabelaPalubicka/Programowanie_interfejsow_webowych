@@ -1,5 +1,6 @@
 import { useState, useContext, useEffect } from "react";
 import UserContext from "../Context/UserContext";
+import {logInWithFb, logInWithGoogle, logInWithGithub } from "../firebase/users";
 
 let signOut = "false";
 
@@ -129,6 +130,15 @@ const SignIn = (props) => {
                 <input type="password" value={password} onChange={handlePassword} />
             </section>
             <input className="btn" type="button" value="Sign in" onClick={handleSignIn} />
+            <button className="btn" onClick={logInWithGoogle}>
+              Login with Google
+            </button>
+            <button className="btn" onClick={logInWithFb}>
+              Login with FB
+            </button>
+            <button className="btn" onClick={logInWithGithub}>
+              Login with Github
+            </button>
         </div>
       );
     }

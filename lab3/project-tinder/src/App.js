@@ -13,11 +13,17 @@ import {BrowserRouter, NavLink, Routes, Route} from 'react-router-dom';
 import UserContext from './Context/UserContext';
 import {ReducerContext, initState, reducer} from './Context/ReducerContext';
 
+import {auth} from './firebase/init';
+import {useAuthState} from 'react-firebase-hooks/auth';
+import {logout} from './firebase/users';
+
 function App() {
 
   const [state, dispatcher] = useReducer(reducer, initState);
 
   const [studentsList, setStudentList] = useState([]);
+
+  const [userInny] = useAuthState(auth);
 
   useEffect(() => {
     axios.get("http://localhost:3000/tinder/students.json")
@@ -66,8 +72,12 @@ function App() {
               <NavLink to="/searchGroup">Search group</NavLink>
               <NavLink to="/addGroup">Add group</NavLink>
               <NavLink to="/fav">Fav: {state.counter}</NavLink>
-              <NavLink to="/signIn">Sign in</NavLink>
+              {userInny
+              ? <button onClick={logout}>Log Out {userInny.email}</button>
+              : <NavLink to="/signIn">Sign in</NavLink>
+              }
               <NavLink to="/signUp">Sign up</NavLink>
+              
               </nav>
           <Logged/>
         </section>
